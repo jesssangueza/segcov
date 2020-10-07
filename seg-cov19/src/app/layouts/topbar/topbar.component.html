@@ -1,0 +1,34 @@
+<nav id="topbar">
+  
+    <div class="row">
+      <div class="col text-left d-block d-lg-none">
+        <a id="sidebarToggleTop" class="btn btn-link" (click)="togglePrimaryMenu()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <div class="col text-center d-block d-lg-none">
+        <img src="assets/logo.png"  height="40" alt="Seguimiento Covid Logo" />
+      </div>
+      <div class="col text-left d-none d-lg-block">
+        <img src="assets/logo.png"  height="40" alt="Seguimiento Covid Logo" />
+      </div>
+      <div class="col text-left d-none d-lg-block">
+        <a class="btn btn-link" (click)="print()">
+          <i class="fas fa-print fa-fw"></i>
+          Imprimir
+        </a>
+      </div>
+      <div class="col text-right">
+        
+          <i class="fas fa-user-md fa-fw"></i>
+          {{userName}}
+        
+        &nbsp;&nbsp;&nbsp;
+        <a class="btn btn-link" (click)="logout()">
+          <i class="fas fa-sign-out-alt fa-fw"></i>
+          Salir
+        </a>
+      </div>
+    </div>  
+    
+  </nav>

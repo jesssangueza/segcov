@@ -1,0 +1,72 @@
+<div class="panel-title">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Filiación</h1>
+        </div>
+    </div>
+</div>
+
+<br/>
+<div class="container-fluid">
+    <div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="">
+                    <a class="btn btn-sm btn-outline-success" [routerLink]="['/new-patient']">
+                        <i class="fas fa-plus"></i> Nuevo Paciente
+                    </a>
+                    &nbsp;
+                    <a class="btn btn-sm btn-default" (click) = "displaySearch()">
+                        <i class="fas fa-search"></i> Buscar Paciente
+                    </a>
+                </div>
+                
+                <!-- Search Criteria-->
+                <div class="card mt-1" *ngIf="showSearch">
+                    <div class="card-body">
+                        <div class="input-group">
+                            <form [formGroup]="searchForm">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Primer Apellido" formControlName="MiddleName">
+                                    <div class="input-group-append">
+                                      <button class="btn btn-sm btn-outline-secondary" type="button" (click)="searchPatient()">Buscar</button>
+                                    </div>
+                                  </div>
+                            </form>                                                       
+                        </div>
+                    </div>                    
+                </div>
+
+                <!-- List of Patients-->
+                <div class="mt-1">
+                    <div class="list-group">
+                        <div *ngFor="let patient of patients" class="list-group-item list-group-item-action flex-column align-items-start" (click)="selectPatient(patient)">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{patient.FirstName}} {{patient.MiddleName}} {{patient.LastName}} - ({{patient.Sex}})</h6> 
+                                <small>Edad: {{patient.Age}}</small>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col-xs-12 col-sm-6">{{patient.Type == 'A' ? 'Asegurado' : 'Beneficiario'}}</div>
+                                <div class="col-xs-12 col-sm-6 pull-right text-right">
+                                    <a class="enlace"  (click) = "historyClick(patient)">
+                                        Historia
+                                    </a>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <a class="enlace"  (click) = "diseaseClick(patient)">
+                                        Antecendentes
+                                    </a>
+                                </div>                                                                
+                            </div>                            
+                        </div>
+                    </div>
+                </div>  
+                <div class="mt-2">
+                    <app-pagination [pagination]="pagination" (pageChanged)="onPageChanged()"></app-pagination>
+                </div>              
+            </div>
+            <div class="col-sm-7">
+                <app-edit-patient *ngIf="selectedPatient?.Id" [editedPatientId]="selectedPatient.Id"></app-edit-patient>
+            </div>
+        </div>
+    </div>
+</div>

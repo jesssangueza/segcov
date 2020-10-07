@@ -1,0 +1,48 @@
+<br/>
+<div class="container-fluid">
+    <div class="col-xs-12">
+     
+        <h4 >  <i class="fas fa-head-side-mask"></i> Edición Paciente</h4>
+    </div>
+    <div class="">
+        <div class="col-xs-12">
+            <form [formGroup]="patientForm">
+                <div class="form-group">
+                  <input type="text" formControlName="FirstName" class="form-control" id="FirstName" placeholder="Nombres">
+                  <div *ngIf="patientForm.controls.FirstName.invalid" class="text-danger pl-1">
+                    <small><div *ngIf="patientForm.controls.FirstName.errors.required">Ingrese un Nombre</div> </small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" formControlName="MiddleName" class="form-control"  id="MiddleName" placeholder="Primer Apellido">
+                  <div *ngIf="patientForm.controls.MiddleName.invalid" class="text-danger pl-1">
+                    <small><div *ngIf="patientForm.controls.MiddleName.errors.required">Ingrese un Primer apellido</div> </small>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" formControlName="LastName" class="form-control"  id="LastName" placeholder="Segundo Apellido">
+                </div>
+                <div class="form-group">
+                    <input type="number" formControlName="Age" class="form-control"  id="Age" placeholder="Edad">
+                </div>
+                <div class="form-group">
+                    <label for="sex">Sexo: </label> &nbsp;
+                    <input type="radio" value="H" formControlName="Sex" id="Sex"> H &nbsp;
+                    <input type="radio" value="M" formControlName="Sex" id="Sex"> M
+                </div>
+                <div class="form-group">
+                  <input type="text" formControlName="Telephone" class="form-control"  id="Telephone" placeholder="Teléfono fijo o celular">                  
+                </div>
+                <div class="form-group">
+                  <label for="Type">Tipo: </label> &nbsp;
+                  <input type="radio" value="A" formControlName="Type" id="Type"> Asegurado &nbsp;
+                  <input type="radio" value="B" formControlName="Type" id="Type"> Beneficiario
+                </div>
+                <button class="btn btn-outline-success btn-block" [disabled] = "patientForm.invalid" [ngClass] = "{'disabled': patientForm.invalid}" (click)="save()">
+                  Guardar
+                </button>
+            </form>
+        </div>
+     </div>
+</div>
+

@@ -1,0 +1,4 @@
+<ngb-pagination class="d-flex justify-content-center" size="sm" [collectionSize]="pagination.CollectionSize"  [(page)]="pagination.Page" [boundaryLinks]="pagination.BoundaryLinks" [maxSize]="pagination.MaxSize" [pageSize]="pagination.PageSize" (pageChange)="onPageChanged()">
+    <ng-template ngbPaginationFirst>{{pagination.TextPaginationFirst}}</ng-template>
+    <ng-template ngbPaginationLast>{{pagination.TextPaginationLast}}</ng-template>
+</ngb-pagination>

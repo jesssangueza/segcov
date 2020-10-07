@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div>
+        <form [formGroup]="historyForm">
+            <div class="card mt-1">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-6 pull-left text-left"> {{editedHistoryId === '0' ? 'Nueva' : 'Editar '}} Historia</div> 
+                        <div class="col-sm-6 pull-right text-right">
+                            <a class="btn btn-sm btn-outline-success" (click)="saveHistory()">
+                                <i class="fas fa-save"></i> Guardar
+                            </a>
+                            &nbsp;
+                            <a class="btn btn-sm btn-default" (click)="cancel()">
+                                <i class="fas fa-cancel"></i> Cancelar
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>ABC Goal</label>
+                                    <input type="number" min="1" max="15" class="form-control" id="AbcgoalCalification" name= "AbcgoalCalification" formControlName="AbcgoalCalification" />
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Fecha</label>
+                                    <input type="date" class="form-control" id="Created" name= "Created" formControlName="Created" />
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Evolución</label>
+                                    <textarea rows="2" formControlName="Evolution" class="form-control" id="Evolution" > </textarea>
+                                </div> 
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Tratamiento</label>
+                                    <textarea rows="2" formControlName="Treatment" class="form-control" id="Treatment"> </textarea>
+                                </div> 
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Otros Examenes</label>
+                                    <textarea rows="2" formControlName="OtherTests" class="form-control" id="OtherTests"> </textarea>
+                                </div> 
+                            </div>
+                            
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Sintomas</label>
+                            <div class="" formArrayName="Symptoms" *ngFor="let symptom of symptomsFormArray.controls; let i = index">
+                                <div class="p-1">
+                                    <div class="col-sm-12">
+                                        <input type="checkbox" class="form-check-input" [formControlName]="i" /> &nbsp; {{CovidSymptoms[i].Value}}
+                                    </div>                        
+                                </div>                    
+                            </div>
+                        </div>
+                    </div>
+                                                     
+                </div> 
+                <div class="card-footer text-muted">
+                    <a class="btn btn-sm btn-outline-success" (click)="saveHistory()">
+                        <i class="fas fa-save"></i> Guardar
+                    </a>
+                    &nbsp;
+                    <a class="btn btn-sm btn-default" (click)="cancel()">
+                        <i class="fas fa-cancel"></i> Cancelar
+                    </a>
+                </div>                   
+            </div>
+        </form>
+        
+    </div>
+</div>

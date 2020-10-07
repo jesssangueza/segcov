@@ -1,0 +1,87 @@
+<div class="panel-title">
+    <div class="row">
+        <div class="col text-center">
+            <h1> Historia del Paciente</h1>
+        </div>
+    </div>
+</div>
+
+<br/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+            <a class="btn btn-sm btn-outline-success" (click)="addNewHistory()" *ngIf="!AddEditHistory">
+                <i class="fas fa-plus" ></i> Nueva Historia
+            </a>
+        </div>
+        <div class="col-sm-10">
+            <h4 *ngIf="Patient"> {{Patient.FirstName}} {{Patient.MiddleName}} {{Patient.LastName}} <small>Edad: {{Patient.Age}}</small></h4>
+        </div>
+    </div>
+
+    <!-- New Hitory -->
+    <div *ngIf="AddEditHistory" class="m-1">
+        <app-edit-history [editedHistoryId]="editedHistoryId" (cancelClick)="onCancelClick()" (saveClick)="onSaveClick()" [patientId]="Patient.Id"></app-edit-history>
+    </div>
+
+    <div *ngIf="PatientHistory.length <= 0">
+        <p>
+            <ngb-alert [dismissible]="false">
+              <strong>Información: </strong>No existen historias para este paciente
+            </ngb-alert>
+          </p>
+    </div>
+    <!-- History -->
+    <div *ngIf="PatientHistory.length > 0">
+        <div class="card  m-1" *ngFor="let history of PatientHistory">
+            
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <strong>ABC Goal: </strong>
+                        <span>{{history.AbcgoalCalification}}</span>
+                    </div> 
+                    <div class="col-xs-12 col-sm-4">
+                        <strong>Fecha: </strong>
+                        <span>{{history.Created | date }}</span>
+                    </div> 
+                    <div class="col-xs-12 col-sm-4 text-right" >
+                        <a class="enlace" (click)="collapse(history)">{{ history.Collapse ? 'Ver mas...' : 'Colapsar'}}</a>
+                        &nbsp; &nbsp;
+                        <a class="enlace" (click)="editHistory(history)" *ngIf="!history.Collapse" data-toggle="tooltip" data-placement="bottom" title="Editar Historia" >
+                            <i class="fas fa-edit" ></i> 
+                        </a>
+                    </div>                      
+                </div> 
+                <div *ngIf="!history.Collapse">
+                    <div class="row" >
+                        <div class="col-xs-12 col-sm-6">
+                            <strong>Tratamiento: </strong>
+                            <p class="history-data text-justify">{{history.Treatment}}</p>
+                        </div> 
+                        <div class="col-xs-12 col-sm-6">
+                            <strong>Evolución: </strong>
+                            <p class="history-data text-justify">{{history.Evolution}}</p>
+                        </div>                       
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <strong>Otros Examenes: </strong>
+                            <p class="history-data text-justify">{{history.OtherTests}}</p>
+                        </div> 
+                        <div class="col-xs-12 col-sm-6">
+                            <strong>Sintomas: </strong>
+                            <ul>
+                                <li *ngFor="let symptom of history.DescriptiveSymptoms"> {{symptom}}</li>
+                            </ul>
+                        </div>                       
+                    </div>
+                </div>                                 
+            </div> 
+                            
+        </div>
+        
+        
+    </div>
+</div>

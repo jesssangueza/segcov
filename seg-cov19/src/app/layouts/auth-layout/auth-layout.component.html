@@ -1,0 +1,22 @@
+<div class="content-wrapper">
+    <!-- Top Bar -->
+    <div class="d-print-none">
+        <app-topbar (menuSetting)="onToggleMenu($event)"></app-topbar>
+    </div>    
+    
+    <div class="row">
+        <div class="col-sm-2 d-print-none" >
+            <!-- Primary Navigation -->
+            <app-sidebar [isMenuOpen]="menuSetting" (menuSetting)="onToggleMenu($event)" (menuPinned)="onTogglePinMenu($event)"></app-sidebar>
+        </div>
+        <div class="col-sm-10" id="content">
+            <!-- Main Content -->
+            <div id="content-body" [ngClass]="{'menu-pinned' : isMenuPinned, 'menuOpen' : menuSetting}">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+    
+  
+    
+  </div>

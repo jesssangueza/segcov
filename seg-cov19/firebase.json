@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/seg-cov19",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
