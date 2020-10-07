@@ -1,0 +1,16 @@
+https://angular.io/guide/deployment
+https://firebase.google.com/docs/hosting/quickstart?hl=es
+
+0. ng build --prod  (this create the dist folder)
+
+**Go to your proyect directory as usual (from where you run -> ng serve -o)
+** steps 1,2,3 you have to do only once.
+1. npm install -g firebase-tools
+2. firebase init
+3. Exactly how it is at firebaseInit.png
+
+** Step 4 you have to run to deploy a new version
+4. firebase deploy
+
+
+https://segcov-1919.web.app/patient
