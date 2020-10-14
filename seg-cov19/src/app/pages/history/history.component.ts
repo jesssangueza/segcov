@@ -79,7 +79,19 @@ export class HistoryComponent implements OnInit , OnDestroy{
   }
 
   checkRouteParameters() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
+    // Getting parameter from snapshot returns the initial value of the route.
+    this.PatientId = this.route.snapshot.paramMap.get('patientId');
+    this.subscriptions.add(
+      this.patientService.getPatient(this.PatientId).subscribe((resultPatient) => {
+        this.Patient = this.patientService.MaptoPatient(resultPatient.payload.id, resultPatient.payload.data());
+      })
+    );
+    this.getCovidSymptoms();
+
+    /*// Getting parameter using observable. *********************
+      // in case the  ngOnInit() is not called again "the same component instance is used" needing to get parameter from observable.
+      // test to be sure if ngOnInit is called or not to use snapshot or observable paths
+      this.route.paramMap.subscribe((params: ParamMap) => {
       this.PatientId = params.get('patientId');
       this.subscriptions.add(
         this.patientService.getPatient(this.PatientId).subscribe((resultPatient) => {
@@ -87,7 +99,7 @@ export class HistoryComponent implements OnInit , OnDestroy{
         })
       );
       this.getCovidSymptoms();
-    });
+    });*/
   }
 
   addNewHistory() {

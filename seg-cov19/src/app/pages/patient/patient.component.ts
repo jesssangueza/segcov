@@ -112,10 +112,10 @@ export class PatientComponent implements OnInit, OnDestroy {
   }
 
   diseaseClick(patient: Patient) {
-    this.router.navigate(['/patient-disease', { patientId: patient.Id}], );
+    this.router.navigate(['/patient-disease', patient.Id], );
   }
 
   historyClick(patient: Patient) {
-    this.router.navigate(['/patient-history', { patientId: patient.Id}], );
+    this.router.navigate(['/patient-history', patient.Id], );
   }
 }

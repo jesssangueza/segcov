@@ -58,7 +58,17 @@ export class PatientDiseaseComponent implements OnInit, OnDestroy {
         this.diseasesFormArray.push(new FormControl(false));
       });
 
-      // Search the Patient and the Patient Disease.
+      // Getting parameter from snapshot returns the initial value of the route.
+      // Search the Patient and the Patient Disease
+      this.PatientId = this.route.snapshot.paramMap.get('patientId');
+      this.subscriptions.add(
+        this.patientService.getPatient(this.PatientId).subscribe((resultPatient) => {
+          this.Patient = this.patientService.MaptoPatient(resultPatient.payload.id, resultPatient.payload.data());
+          this.getPatientDisease();
+        })
+      );
+
+      /*// Search the Patient and the Patient Disease.
       this.route.paramMap.subscribe((params: ParamMap) => {
         this.PatientId = params.get('patientId');
         this.subscriptions.add(
@@ -67,7 +77,7 @@ export class PatientDiseaseComponent implements OnInit, OnDestroy {
             this.getPatientDisease();
           })
         );
-      });
+      });*/
     });
   }
 

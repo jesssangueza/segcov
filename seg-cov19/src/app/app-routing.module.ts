@@ -35,11 +35,11 @@ const routes: Routes = [{
       component: NewPatientComponent
     },
     {
-      path: 'patient-disease',
+      path: 'patient-disease/:patientId',
       component: PatientDiseaseComponent
     },
     {
-      path: 'patient-history',
+      path: 'patient-history/:patientId',
       component: HistoryComponent
     }
   ]
